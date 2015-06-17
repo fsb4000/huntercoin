@@ -3192,7 +3192,8 @@ bool SendMessages(CNode* pto, bool fSendTrickle)
         }
 
         // Resend wallet transactions that haven't gotten in a block yet
-        ResendWalletTransactions();
+        if (!IsInitialBlockDownload())
+            ResendWalletTransactions();
 
         // Address refresh broadcast
         static int64 nLastRebroadcast;
